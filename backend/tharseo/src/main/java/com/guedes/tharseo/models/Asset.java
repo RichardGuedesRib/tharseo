@@ -1,31 +1,39 @@
 package com.guedes.tharseo.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
+
+import java.io.Serial;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "tb_assets")
-public class Asset {
+
+public class Asset implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID= 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String acronym;
-
-    private Double marketValue;
+    private Double quantity;
 
     private Integer isActive;
+
+
 
 
     public Asset() {
     }
 
-    public Asset(Long id, String name, String acronym, Double marketValue) {
+    public Asset(Long id, String name, String acronym, Double quantity, Integer isActive) {
         this.id = id;
         this.name = name;
         this.acronym = acronym;
-        this.marketValue = marketValue;
-        this.isActive = 1;
+        this.quantity = quantity;
+        this.isActive = isActive;
     }
 
     public Long getId() {
@@ -52,12 +60,12 @@ public class Asset {
         this.acronym = acronym;
     }
 
-    public Double getMarketValue() {
-        return marketValue;
+    public Double getQuantity() {
+        return quantity;
     }
 
-    public void setMarketValue(Double marketValue) {
-        this.marketValue = marketValue;
+    public void setQuantity(Double quantity) {
+        this.quantity = quantity;
     }
 
     public Integer getIsActive() {

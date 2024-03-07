@@ -53,9 +53,9 @@ public class UserService {
         if (user.getIsactive() != null) {
             oldUser.setIsactive(user.getIsactive());
         }
-        if (user.getWallet() != null) {
-            oldUser.setWallet((user.getWallet()));
-        }
+//        if (user.getWallet() != null) {
+//            oldUser.setWallet((user.getWallet()));
+//        }
         if (user.getPhoneNumber() != null) {
             oldUser.setPhoneNumber(user.getPhoneNumber());
         }
@@ -67,5 +67,7 @@ public class UserService {
         user.setIsactive(0);
         updateUser(user.getId(), user);
     }
+
+
 
 }

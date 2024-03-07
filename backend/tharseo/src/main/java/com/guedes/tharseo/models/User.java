@@ -3,9 +3,16 @@ package com.guedes.tharseo.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "tb_users")
-public class User {
+public class User implements Serializable {
+    @Serial
+    private static final long serialVersionUID= 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -14,34 +21,25 @@ public class User {
     private String phoneNumber;
     private String email;
     private String password;
+//    @OneToMany(targetEntity = Asset.class)
+//    @JoinColumn(name = "iduser")
+//      private List<Asset> wallet;
 
-    @OneToOne
-    private Wallet wallet;
     private Integer isactive;
 
     public User() {
+//        this.wallet = new ArrayList<>();
     }
 
-    public User(Long id, String name, String lastname, String email, String password, Wallet wallet, String phoneNumber) {
+    public User(Long id, String name, String lastname, String phoneNumber, String email, String password, Integer isactive) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
-        this.wallet = wallet;
-        this.isactive = 1;
-
-    }
-
-    public User(Long id, String name, String lastname, String phoneNumber, String email, String password ) {
-        this.id = id;
-        this.name = name;
-        this.lastname = lastname;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.password = password;
-        this.isactive = 1;
+//        this.wallet = new ArrayList<>();
+        this.isactive = isactive;
     }
 
     public Long getId() {
@@ -68,6 +66,14 @@ public class User {
         this.lastname = lastname;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -84,13 +90,13 @@ public class User {
         this.password = password;
     }
 
-    public Wallet getWallet() {
-        return wallet;
-    }
-
-    public void setWallet(Wallet wallet) {
-        this.wallet = wallet;
-    }
+//    public List<Asset> getWallet() {
+//        return wallet;
+//    }
+//
+//    public void setWallet(List<Asset> wallet) {
+//        this.wallet = wallet;
+//    }
 
     public Integer getIsactive() {
         return isactive;
@@ -100,24 +106,8 @@ public class User {
         this.isactive = isactive;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+//    public void addAssetToUser(Asset asset) {
+//        this.wallet.add(asset);
+//    }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", wallet=" + wallet +
-                ", isactive=" + isactive +
-                '}';
-    }
 }

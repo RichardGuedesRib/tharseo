@@ -47,8 +47,8 @@ public class AssetService {
         if (asset.getAcronym() != null) {
             oldAsset.setAcronym(asset.getAcronym());
         }
-        if (asset.getMarketValue() != null) {
-            oldAsset.setMarketValue(asset.getMarketValue());
+        if (asset.getQuantity() != null) {
+            oldAsset.setQuantity(asset.getQuantity());
         }
         if (asset.getIsActive() != null) {
             oldAsset.setIsActive(asset.getIsActive());
